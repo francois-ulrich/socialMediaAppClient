@@ -94,5 +94,9 @@ export default {
       '& a': {
         margin: '20px 10px'
       }
+    },
+
+    logo:{
+      marginRight:'20px'
     }
   };
