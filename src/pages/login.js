@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import {Link} from 'react-router-dom';
 
 import axios from 'axios';
@@ -11,31 +11,11 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-
 import PropTypes from 'prop-types';
 
-const styles = {
-    form:{
-        textAlign: 'center'
-    },
-    pageTitle: {
-        margin: '20px auto'
-    },
-    button:{
-        marginTop: '40px',
-        position: 'relative'
-    },
-    textField: {
-        margin: '0 10px 10px 0'
-    },
-    customError:{
-        color: 'red',
-        fontSize: '0.8rem'
-    },
-    progress:{
-        position: "absolute"
-    }
-}
+const styles = (theme) => ({
+    ...theme
+});
 
 export class login extends Component {
     constructor(){
@@ -72,8 +52,10 @@ export class login extends Component {
             })
         });
 
+        /*
         console.log("this.state.errors");
         console.log(this.state.errors);
+        */
 
         // // Redirection vers la home
         // this.props.history.push('/');
@@ -92,14 +74,12 @@ export class login extends Component {
         const { errors, loading } = this.state;
 
         return (
-            <Grid container className={classes.form}>
+            <Grid container>
                 <Grid item sm/>
                 <Grid item sm>
-                    <Typography variant="h3" className={classes.pageTitle}>
-                        Login
-                    </Typography>
 
-                    <form noValidate onSubmit={this.handleSubmit}>
+
+                    <form noValidate onSubmit={this.handleSubmit}  className={classes.form}>
                         <TextField 
                         id="email" 
                         name="email" 
@@ -133,19 +113,17 @@ export class login extends Component {
                         variant="contained" 
                         color="primary" 
                         className={classes.button} 
-                        onSubmit={this.handleSubmit}>
+                        onSubmit={this.handleSubmit}
+                        disabled={ loading }>
                             Submit
-                            {loading && (
-                                <CircularProgress size={30} className={classes.progress}/>
-                            )}
                         </Button>
+                        
+                        { loading && <CircularProgress size={30} className={classes.progress}/>}
                     </form>
 
                     <br />
 
                     <small>Don't have an account yet? Sign up <Link to="/signup">here</Link></small>
-
-
                 </Grid>
                 <Grid item sm/>
             </Grid>

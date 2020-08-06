@@ -4,7 +4,7 @@ import './App.css';
 
 // Material UI
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import createTheme from '@material-ui/core/styles/createMuiTheme';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 
 // Components
 import Navbar from './components/Navbar';
@@ -16,7 +16,35 @@ import signup from './pages/signup';
 
 // Theme
 import themeObject from './util/theme';
-const theme = createTheme({themeObject});
+
+// const styles = {
+//   form:{
+//       textAlign: 'center'
+//   },
+//   pageTitle: {
+//       margin: '20px auto',
+//       textAlign: 'center'
+//   },
+//   button:{
+//       marginTop: '40px',
+//       position: 'relative'
+//   },
+//   textField: {
+//       margin: '0 10px 10px 0'
+//   },
+//   customError:{
+//       color: 'red',
+//       fontSize: '0.8rem'
+//   },
+//   progress:{
+//       width: "30px",
+//       height: "30px",
+//       display: "block",
+//       margin: "10px auto 0",
+//   }
+// }
+
+const theme = createMuiTheme(themeObject);
 
 class App extends Component {
   render(){
