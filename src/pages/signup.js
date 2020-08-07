@@ -11,11 +11,10 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-
 import PropTypes from 'prop-types';
 
 const styles = (theme) => ({
-    ...theme
+    ...theme.spreadThis
 });
 
 export class signup extends Component {

@@ -14,7 +14,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 
 const styles = (theme) => ({
-    ...theme
+    ...theme.spreadThis
 });
 
 export class login extends Component {
