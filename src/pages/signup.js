@@ -102,7 +102,7 @@ export class signup extends Component {
                         <TextField 
                         id="confirmPassword" 
                         name="confirmPassword" 
-                        type="confirmPassword" 
+                        type="password" 
                         label="Confirm password" 
                         className={classes.textField}
                         helperText={errors.confirmPassword}
@@ -114,12 +114,12 @@ export class signup extends Component {
                         <TextField 
                         id="handle" 
                         name="handle" 
-                        type="texte" 
+                        type="text" 
                         label="User handle" 
                         className={classes.textField}
-                        helperText={errors.email}
-                        error={errors.email ? true : false}
-                        value={this.state.email} onChange={this.handleChange} fullWidth/>
+                        helperText={errors.handle}
+                        error={errors.handle ? true : false}
+                        value={this.state.handle} onChange={this.handleChange} fullWidth/>
 
                         {errors.general && (
                             <Typography variant="body2" className={classes.customError}>

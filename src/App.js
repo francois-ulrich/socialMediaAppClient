@@ -8,6 +8,7 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 
 // Components
 import Navbar from './components/Navbar';
+import AuthRoute from './util/AuthRoute';
 
 // Pages
 import home from './pages/home';
@@ -16,6 +17,9 @@ import signup from './pages/signup';
 
 // Theme
 import themeObject from './util/theme';
+
+// Décodeur de token
+import jwDecode from 'jwt-decode';
 
 // const styles = {
 //   form:{
@@ -46,6 +50,23 @@ import themeObject from './util/theme';
 
 const theme = createMuiTheme(themeObject);
 
+let authenticated;
+const token = localStorage.FBIdToken;
+
+// Décoder le token
+if(token){
+  const decodedToken = jwDecode(token);
+
+  if(decodedToken.exp * 1000 <= Date.now()){
+    // localStorage.removeItem("FBIdToken");
+    authenticated = false;
+
+    window.location.href = "/login";
+  }else{
+    authenticated = true;
+  }
+}
+
 class App extends Component {
   render(){
     return (
@@ -56,8 +77,8 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/" component={home} />
-                <Route exact path="/login" component={login} />
-                <Route exact path="/signup" component={signup} />
+                <AuthRoute exact path="/login" component={login} authenticated={authenticated}/>
+                <AuthRoute exact path="/signup" component={signup} authenticated={authenticated}/>
               </Switch>
             </div>
           </Router>
