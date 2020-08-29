@@ -25,7 +25,7 @@ export default {
     },
     button:{
       marginTop: '40px',
-      position: 'relative'
+      position: 'relative',
     },
     textField: {
       margin: '0 10px 10px 0'

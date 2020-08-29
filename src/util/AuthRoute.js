@@ -25,7 +25,7 @@ const mapStateToProps = (state) => ({
 
 // Définition des types des props requis par le composant
 AuthRoute.propTypes = {
-    user: PropTypes.object.isRequired,
+    user: PropTypes.object,
 }
 
 
