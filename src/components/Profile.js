@@ -12,12 +12,15 @@ import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
 // Mui Icons
-import LocationOn from '@material-ui/icons/LocationOn';
-import InsertLink from '@material-ui/icons/InsertLink';
-import CalendarToday from '@material-ui/icons/CalendarToday';
+import LocationOntIcon from '@material-ui/icons/LocationOn';
+import InsertLinktIcon from '@material-ui/icons/InsertLink';
+import CalendarTodaytIcon from '@material-ui/icons/CalendarToday';
+import EditIcon from '@material-ui/icons/Edit';
 
 // Redux
 import { connect } from 'react-redux';
+
+import CustomButton from './CustomButton'
 
 // React requires
 const Link = require("react-router-dom").Link;
@@ -76,6 +79,17 @@ const styles = {
 }
 
 export class Profile extends Component {
+    handleEditPicture = (e) => {
+        e.preventDefault();
+
+        const userData = {
+            email: this.state.email,
+            password: this.state.password,
+        }
+
+        this.props.loginUser(userData, this.props.history)
+    }
+
     render() {
         const { 
             classes,
@@ -111,6 +125,21 @@ export class Profile extends Component {
                 <div className={classes.profile}>
                     <div className="image-wrapper">
                         <img src={imageUrl} alt="profile" className="profile-image"/>
+
+                        <input
+                            type="file"
+                            id="imageInput"
+                            hidden="hidden"
+                            onChange={this.handleImageChange}
+                        />
+
+                        <CustomButton
+                            tip="Edit profile picture"
+                            onClick={this.handleEditPicture}
+                            btnClassName="button"
+                        >
+                            <EditIcon color="primary" />
+                        </CustomButton>
                     </div>
 
                     <hr/>
@@ -135,7 +164,7 @@ export class Profile extends Component {
 
                         {location && (
                             <Fragment>
-                                <LocationOn color="primary"/>
+                                <LocationOntIcon color="primary"/>
                                 {' '}
                                 <span>{location}</span>
                             </Fragment>
@@ -145,7 +174,7 @@ export class Profile extends Component {
 
                         {website && (
                             <Fragment>
-                                <InsertLink color="primary"/>
+                                <InsertLinktIcon color="primary"/>
                                 {' '}
                                 <a href={website} target="_blank" rel="noopener noreferrer">{website}</a>
                             </Fragment>
@@ -155,7 +184,7 @@ export class Profile extends Component {
 
                         {createdAt && (
                             <Fragment>
-                                <CalendarToday color="primary"/>
+                                <CalendarTodaytIcon color="primary"/>
                                 {' '}
                                 <span>Joined { dayjs(createdAt).format("MM/YYYY") }</span>
                             </Fragment>
