@@ -19,6 +19,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 // Redux
 import { connect } from 'react-redux';
+import {uploadImage} from '../redux/actions/userActions';
 
 import CustomButton from './CustomButton'
 
@@ -79,15 +80,27 @@ const styles = {
 }
 
 export class Profile extends Component {
-    handleEditPicture = (e) => {
+    constructor(){
+        super();
+
+        this.inputFileRef = React.createRef();
+    }
+
+    handleImageEditIconClick = (e) => {
         e.preventDefault();
 
-        const userData = {
-            email: this.state.email,
-            password: this.state.password,
-        }
+        console.log("handleEditPicture");
 
-        this.props.loginUser(userData, this.props.history)
+        this.inputFileRef.current.click();
+    }
+
+    handleImageFileChange = (e) => {
+        const newImageFile = e.target.files[0];
+
+        let formData = new FormData();
+        formData.append('image', newImageFile, newImageFile.name);
+
+        this.props.uploadImage(formData);
     }
 
     render() {
@@ -127,15 +140,16 @@ export class Profile extends Component {
                         <img src={imageUrl} alt="profile" className="profile-image"/>
 
                         <input
+                            ref={this.inputFileRef}
                             type="file"
                             id="imageInput"
                             hidden="hidden"
-                            onChange={this.handleImageChange}
+                            onChange={this.handleImageFileChange}
                         />
 
                         <CustomButton
                             tip="Edit profile picture"
-                            onClick={this.handleEditPicture}
+                            onClick={this.handleImageEditIconClick}
                             btnClassName="button"
                         >
                             <EditIcon color="primary" />
@@ -207,8 +221,15 @@ const mapStateToProps = (state) => ({
 Profile.propTypes = {
     user: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
+    uploadImage: PropTypes.func.isRequired,
+}
+
+// Passer les userActions dont on a besoin en props. Ici, uploadImage()
+const mapActionsToProps = {
+    uploadImage
 }
 
 export default connect(
     mapStateToProps,
+    mapActionsToProps
 )(withStyles(styles)(Profile));
