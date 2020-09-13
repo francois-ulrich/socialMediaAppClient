@@ -77,7 +77,7 @@ const styles = {
 export class Profile extends Component {
     constructor(){
         super();
-
+        
         this.inputFileRef = React.createRef();
     }
 
@@ -98,7 +98,6 @@ export class Profile extends Component {
 
     handleLogout = (e) => {
         this.props.logoutUser();
-        
     }
 
     render() {
@@ -211,6 +210,8 @@ export class Profile extends Component {
                             >
                             <KeyboardReturnIcon color="primary" />
                         </CustomButton>
+
+                        <EditDetails />
                     </div>
                 </div>
             </Paper>

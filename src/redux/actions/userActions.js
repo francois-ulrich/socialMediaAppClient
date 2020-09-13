@@ -122,3 +122,23 @@ export const uploadImage = (formData) => (dispatch) => {
         console.log(err)
     });
 }
+
+// Update des infos utilisateir
+export const editUserDetails = (newUserData) => (dispatch) => {
+    dispatch({
+        type: LOADING_USER
+    });
+
+    axios
+    .post("/user", newUserData)
+    .then(res => {
+        dispatch(getUserData());
+
+        dispatch({
+            type: CLEAR_ERRORS,
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
