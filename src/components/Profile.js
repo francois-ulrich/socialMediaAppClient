@@ -16,22 +16,17 @@ import LocationOntIcon from '@material-ui/icons/LocationOn';
 import InsertLinktIcon from '@material-ui/icons/InsertLink';
 import CalendarTodaytIcon from '@material-ui/icons/CalendarToday';
 import EditIcon from '@material-ui/icons/Edit';
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 
 // Redux
 import { connect } from 'react-redux';
-import {uploadImage} from '../redux/actions/userActions';
+import { uploadImage, logoutUser } from '../redux/actions/userActions';
 
 import CustomButton from './CustomButton'
+import EditDetails from './EditDetails'
 
 // React requires
 const Link = require("react-router-dom").Link;
-
-
-
-// import Card from '@material-ui/core/Card';
-// import CardContent from '@material-ui/core/CardContent';
-// import CardMedia from '@material-ui/core/CardMedia';
-// import { Typography } from '@material-ui/core';
 
 const styles = {
     button:{
@@ -89,8 +84,6 @@ export class Profile extends Component {
     handleImageEditIconClick = (e) => {
         e.preventDefault();
 
-        console.log("handleEditPicture");
-
         this.inputFileRef.current.click();
     }
 
@@ -101,6 +94,11 @@ export class Profile extends Component {
         formData.append('image', newImageFile, newImageFile.name);
 
         this.props.uploadImage(formData);
+    }
+
+    handleLogout = (e) => {
+        this.props.logoutUser();
+        
     }
 
     render() {
@@ -204,6 +202,16 @@ export class Profile extends Component {
                             </Fragment>
                         )}
                     </div>
+
+                    <div>
+                        <CustomButton
+                                tip="Logout"
+                                onClick={this.handleLogout}
+                                btnClassName="button"
+                            >
+                            <KeyboardReturnIcon color="primary" />
+                        </CustomButton>
+                    </div>
                 </div>
             </Paper>
         );
@@ -222,11 +230,13 @@ Profile.propTypes = {
     user: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
     uploadImage: PropTypes.func.isRequired,
+    logoutUser: PropTypes.func.isRequired,
 }
 
 // Passer les userActions dont on a besoin en props. Ici, uploadImage()
 const mapActionsToProps = {
-    uploadImage
+    uploadImage,
+    logoutUser
 }
 
 export default connect(
