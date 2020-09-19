@@ -76,7 +76,7 @@ export class EditDetails extends Component {
         return (
             <div>
                 <CustomButton
-                    tip="Edit profile picture"
+                    tip="Edit profile details"
                     onClick={this.handleClickOpen}
                     btnClassName="button"
                 >
@@ -136,10 +136,10 @@ export class EditDetails extends Component {
                     
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
-                        Cancel
+                            Cancel
                         </Button>
                         <Button onClick={this.handleSave} color="primary">
-                        Save edits
+                            Save edits
                         </Button>
                     </DialogActions>
                 </Dialog>

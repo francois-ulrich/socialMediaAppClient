@@ -31,7 +31,7 @@ const styles = {
     }
 }
 
-export class Scream extends Component {
+class Scream extends Component {
     render() {
         dayjs.extend(relativeTime);
 
