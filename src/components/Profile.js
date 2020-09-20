@@ -24,8 +24,6 @@ import PropTypes from 'prop-types';
 import CustomButton from './CustomButton'
 import EditDetails from './EditDetails'
 
-
-
 // React requires
 const Link = require("react-router-dom").Link;
 
@@ -207,7 +205,6 @@ class Profile extends Component {
         );
 
         return loading ? (<p>Loading</p>) : (authenticated ? authenticatedContent : unauthenticatedContent);
-        ;
     }
 }
 
