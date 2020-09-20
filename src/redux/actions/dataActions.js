@@ -1,6 +1,7 @@
 // Types
 import {
     SET_SCREAMS,
+    SET_SCREAM,
     LOADING_DATA,
     LIKE_SCREAM,
     UNLIKE_SCREAM,
@@ -34,20 +35,24 @@ export const loadScreams = () => (dispatch) => {
 
 // Like scream
 export const likeScream = (screamId) => (dispatch) => {
-    dispatch({
-        type: LIKE_SCREAM
-    });
-
-    axios.post( `/screams/${screamId}/like`)
+    axios.post( `/scream/${screamId}/like`)
     .then(res => {
         dispatch({
             type: LIKE_SCREAM,
             payload: res.data
         })
     })
-    .catch(err => {
-        console.log(err);
-    });
+    .catch(err => console.log(err) );
 }
 
 // Unlike scream
+export const unlikeScream = (screamId) => (dispatch) => {
+    axios.post( `/scream/${screamId}/unlike`)
+    .then(res => {
+        dispatch({
+            type: UNLIKE_SCREAM,
+            payload: res.data
+        })
+    })
+    .catch(err => console.log(err) );
+}

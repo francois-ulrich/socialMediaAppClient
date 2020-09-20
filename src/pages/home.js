@@ -27,7 +27,7 @@ class Home extends Component {
             }
         } = this.props;
 
-        const screamsLoadedMarkup = screams.map( (scream, index) => <Scream data={scream} key={index} />);
+        const screamsLoadedMarkup = screams.map( (scream, index) => <Scream scream={scream} key={scream.screamId} />);
 
         const screamsLoadingMarkup = (
             <p>Loading...</p>

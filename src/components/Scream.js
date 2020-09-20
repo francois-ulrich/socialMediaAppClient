@@ -11,6 +11,19 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Typography } from '@material-ui/core';
 
+// Redux
+import { connect } from 'react-redux';
+import { likeScream, unlikeScream } from '../redux/actions/dataActions';
+import PropTypes from 'prop-types';
+
+// Logos
+import CommentIcon from '@material-ui/icons/Comment';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+
+// Components
+import CustomButton from './CustomButton';
+
 const dayjs = require('dayjs');
 const relativeTime = require('dayjs/plugin/relativeTime');
 
@@ -32,12 +45,55 @@ const styles = {
 }
 
 class Scream extends Component {
+    isScreamLikedByUser = () => {
+        return (this.props.user.likes && this.props.user.likes.find(like => like.screamId === this.props.scream.screamId))
+    }
+
+    handleLikeScream = () => {
+        this.props.likeScream(this.props.scream.screamId);
+    }
+
+    handleUnlikeScream = () => {
+        this.props.unlikeScream(this.props.scream.screamId);
+    }
+
     render() {
         dayjs.extend(relativeTime);
 
         // Destructuring, même chose que: 
         // const classes = this.props.classes;
-        const { classes,  data : {body, createdAt,userImage,userHandle}} = this.props; 
+        const { 
+            classes,  
+            scream : {
+                body, 
+                createdAt, 
+                userImage, 
+                userHandle,
+                likeCount,
+                commentCount
+            },
+            user: {
+                authenticated
+            }
+        } = this.props; 
+
+        const likeButton = !authenticated ? (
+            <CustomButton tip="Like">
+                <Link to="/login">
+                    <FavoriteBorderIcon  color="primary"/>
+                </Link>
+            </CustomButton>
+        ) : (
+            this.isScreamLikedByUser() ? (
+                <CustomButton tip="Unlike" onClick={this.handleUnlikeScream}>
+                    <FavoriteIcon color="primary" />
+                </CustomButton>
+            ) : (
+                <CustomButton tip="Like" onClick={this.handleLikeScream}>
+                    <FavoriteBorderIcon  color="primary" />
+                </CustomButton>
+            )
+        )
         
         return (
             <Card className={classes.card}>
@@ -61,10 +117,37 @@ class Scream extends Component {
                         {dayjs(createdAt).fromNow()}
                     </Typography>
                     <Typography variant="body1">{body}</Typography>
+
+                    {likeButton}
+                    <span>{likeCount} likes</span>
+
+                    <CustomButton tip="Comments">
+                        <CommentIcon />
+                    </CustomButton>
+                    <span>{commentCount} comments</span>
                 </CardContent>
             </Card>
         );
     }
 }
 
-export default withStyles(styles)(Scream);
+Scream.propTypes = {
+    user: PropTypes.object.isRequired,
+    scream: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
+    likeScream: PropTypes.func.isRequired,
+    unlikeScream: PropTypes.func.isRequired,
+}
+
+// on prend les reducers du state global dont on a besoin, ici user
+const mapStateToProps = (state) => ({
+    user: state.user
+})
+
+// Passer les userActions dont on a besoin en props. Ici, uploadImage()
+const mapActionsToProps = {
+    likeScream,
+    unlikeScream
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Scream));
