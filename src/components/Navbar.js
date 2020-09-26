@@ -57,7 +57,6 @@ class Navbar extends Component {
                 >
                     <ExitToAppIcon/>
                 </CustomButton>
-                
             </Fragment>
         );
 
@@ -77,12 +76,11 @@ class Navbar extends Component {
             <AppBar>
                 <Toolbar className="nav-container">
                     <Button color="inherit" component={Link} to="/">
-                    <Typography variant="h6" noWrap>
-                        The Social Francis
-                    </Typography>
+                        <Typography variant="h6" noWrap>
+                            The Social Francis
+                        </Typography>
                     </Button>
                     { authenticated ? authenticatedButtons : unAuthenticatedButtons }
-
                 </Toolbar>
             </AppBar>
         );

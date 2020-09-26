@@ -13,16 +13,21 @@ import { Typography } from '@material-ui/core';
 
 // Redux
 import { connect } from 'react-redux';
-import { likeScream, unlikeScream } from '../redux/actions/dataActions';
+import { 
+    likeScream,
+    unlikeScream
+} from '../redux/actions/dataActions';
+
 import PropTypes from 'prop-types';
 
-// Logos
+// Icones
 import CommentIcon from '@material-ui/icons/Comment';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
-// Components
+// Custom
 import CustomButton from './CustomButton';
+import DeleteScream from './DeleteScream';
 
 const dayjs = require('dayjs');
 const relativeTime = require('dayjs/plugin/relativeTime');
@@ -40,7 +45,8 @@ const styles = {
     },
     content:{
         padding: 25,
-        objectFit: 'cover'
+        objectFit: 'cover',
+        position: 'relative'
     }
 }
 
@@ -73,7 +79,10 @@ class Scream extends Component {
                 commentCount
             },
             user: {
-                authenticated
+                authenticated,
+                credentials: {
+                    handle,
+                }
             }
         } = this.props; 
 
@@ -125,6 +134,11 @@ class Scream extends Component {
                         <CommentIcon />
                     </CustomButton>
                     <span>{commentCount} comments</span>
+
+                    { (authenticated && (userHandle === handle)) && (
+                        <DeleteScream screamId={this.props.scream.screamId}/>
+                    )}
+                    
                 </CardContent>
             </Card>
         );
@@ -147,7 +161,7 @@ const mapStateToProps = (state) => ({
 // Passer les userActions dont on a besoin en props. Ici, uploadImage()
 const mapActionsToProps = {
     likeScream,
-    unlikeScream
+    unlikeScream,
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Scream));
