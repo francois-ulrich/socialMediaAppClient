@@ -54,8 +54,8 @@ class DeleteScream extends Component {
             <Fragment>
                 <CustomButton 
                 tip="Delete post" 
-                className={classes.deleteButton}
-                onClick={this.handleClickOpen}>
+                onClick={this.handleClickOpen}
+                className={classes.deleteButton}>
                     <DeleteIcon color="secondary"/>
                 </CustomButton>
 
@@ -87,8 +87,8 @@ class DeleteScream extends Component {
 }
 
 DeleteScream.propTypes = {
-    deleteScream: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
+    deleteScream: PropTypes.func.isRequired,
 }
 
 // Passer les userActions dont on a besoin en props. Ici, uploadImage()

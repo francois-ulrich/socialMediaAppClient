@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-// DayJS
-// import dayjs from 'dayjs';
-// import relativeTime from 'dayjs/plugin/relativeTime';
 
 // MUI stuff
 import Card from '@material-ui/core/Card';
@@ -39,14 +36,14 @@ const styles = {
     card: {
         display: 'flex',
         marginBottom: 20,
+        position: 'relative'
     },
     image: {
         minWidth: 200,
     },
     content:{
         padding: 25,
-        objectFit: 'cover',
-        position: 'relative'
+        flexGrow: 1
     }
 }
 
@@ -67,7 +64,6 @@ class Scream extends Component {
         dayjs.extend(relativeTime);
 
         // Destructuring, même chose que: 
-        // const classes = this.props.classes;
         const { 
             classes,  
             scream : {

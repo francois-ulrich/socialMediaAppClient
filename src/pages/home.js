@@ -13,6 +13,9 @@ import { connect } from 'react-redux';
 import { loadScreams } from '../redux/actions/dataActions';
 import PropTypes from 'prop-types';
 
+// Custom
+import PostScream from "./../components/PostScream";
+
 class Home extends Component {
 
     componentDidMount(){
@@ -38,6 +41,8 @@ class Home extends Component {
         return (
             <Grid container spacing={10}>
                 <Grid item sm={8} xs={12}>
+                    <PostScream/>
+
                     {screamsMarkup}
                 </Grid>
                 <Grid item sm={4} xs={12}>
