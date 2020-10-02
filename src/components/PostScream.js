@@ -52,26 +52,25 @@ class PostScream extends Component {
         }
     }
 
-    UNSAFE_componentWillReceiveProps = (nextProps) => {
-        if(nextProps.UI.errors){
-            this.setState({
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if(nextProps.UI.errors !== prevState.errors){
+            return {
                 errors: nextProps.UI.errors
-            })
+            }
         }else{
-            if(!nextProps.UI.loading){
-                this.setState({
+            if (prevState.errors !== nextProps.UI.errors && !nextProps.UI.loading) {
+                return {
                     body:"",
                     errors: {}
-                });
+                };
             }
         }
+
+        return null;
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-
-        // if( this.state.body.length === 0)
-        //     return;
 
         const postData = {
             body: this.state.body,
@@ -87,7 +86,6 @@ class PostScream extends Component {
     }
 
     render() {
-        // Destructuring, même chose que: 
         const { 
             classes,
             user: {
@@ -97,12 +95,9 @@ class PostScream extends Component {
             },
             UI: {
                 loading,
+                errors
             }
         } = this.props;
-
-        const {
-            errors
-        } = this.state;
 
         return (
             <Card className={classes.card}>
@@ -125,8 +120,8 @@ class PostScream extends Component {
                             placeholder="What's on your mind?"
                             className={classes.postTextInput}
                             value={this.state.body}
-                            error={errors.body ? true : false}
-                            helperText={errors.body}
+                            error={(errors && errors.body) ? true : false}
+                            helperText={errors && errors.body}
                             />
                         </FormControl>
 

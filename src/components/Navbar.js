@@ -38,10 +38,6 @@ class Navbar extends Component {
 
         const authenticatedButtons = (
             <Fragment>
-                <CustomButton tip="Post a Scream!">
-                    <PostAddIcon/>
-                </CustomButton>
-
                 <CustomButton tip="Home">
                     <HomeIcon />
                 </CustomButton>
@@ -59,16 +55,19 @@ class Navbar extends Component {
                 </CustomButton>
             </Fragment>
         );
-
+        
         const unAuthenticatedButtons = (
             <Fragment>
-                <CustomButton color="inherit" component={Link} to="/login" tip="Login">
-                    <AccountCircleIcon/>
-                </CustomButton>
-
-                <CustomButton color="inherit" component={Link} to="/signup" tip="Signup">
-                    <PersonAddIcon/>
-                </CustomButton>
+                <Link to="/login" variant="contained" color="primary">
+                    <CustomButton color="inherit" tip="Login">
+                        <AccountCircleIcon/>
+                    </CustomButton>
+                </Link>
+                <Link to="/signup" variant="contained" color="secondary">
+                    <CustomButton color="inherit" tip="Signup">
+                        <PersonAddIcon/>
+                    </CustomButton>
+                </Link>
             </Fragment>
         );
 
