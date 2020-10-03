@@ -10,21 +10,18 @@ import { Typography } from '@material-ui/core';
 
 // Redux
 import { connect } from 'react-redux';
-import { 
-    likeScream,
-    unlikeScream
-} from '../redux/actions/dataActions';
 
 import PropTypes from 'prop-types';
 
 // Icones
 import CommentIcon from '@material-ui/icons/Comment';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+
 
 // Custom
 import CustomButton from './CustomButton';
 import DeleteScream from './DeleteScream';
+import ScreamDialog from './ScreamDialog';
+import LikeButton from './LikeButton';
 
 const dayjs = require('dayjs');
 const relativeTime = require('dayjs/plugin/relativeTime');
@@ -36,7 +33,10 @@ const styles = {
     card: {
         display: 'flex',
         marginBottom: 20,
-        position: 'relative'
+        position: 'relative',
+        // '&:hover': {
+        //     backgroundColor: 'red'
+        // }
     },
     image: {
         minWidth: 200,
@@ -44,21 +44,13 @@ const styles = {
     content:{
         padding: 25,
         flexGrow: 1
+    },
+    inline: {
+        display: 'inline'
     }
 }
 
 class Scream extends Component {
-    isScreamLikedByUser = () => {
-        return (this.props.user.likes && this.props.user.likes.find(like => like.screamId === this.props.scream.screamId))
-    }
-
-    handleLikeScream = () => {
-        this.props.likeScream(this.props.scream.screamId);
-    }
-
-    handleUnlikeScream = () => {
-        this.props.unlikeScream(this.props.scream.screamId);
-    }
 
     render() {
         dayjs.extend(relativeTime);
@@ -72,7 +64,8 @@ class Scream extends Component {
                 userImage, 
                 userHandle,
                 likeCount,
-                commentCount
+                commentCount,
+                screamId
             },
             user: {
                 authenticated,
@@ -82,33 +75,15 @@ class Scream extends Component {
             }
         } = this.props; 
 
-        const likeButton = !authenticated ? (
-            <CustomButton tip="Like">
-                <Link to="/login">
-                    <FavoriteBorderIcon  color="primary"/>
-                </Link>
-            </CustomButton>
-        ) : (
-            this.isScreamLikedByUser() ? (
-                <CustomButton tip="Unlike" onClick={this.handleUnlikeScream}>
-                    <FavoriteIcon color="primary" />
-                </CustomButton>
-            ) : (
-                <CustomButton tip="Like" onClick={this.handleLikeScream}>
-                    <FavoriteBorderIcon  color="primary" />
-                </CustomButton>
-            )
-        )
-        
         return (
             <Card className={classes.card}>
+
                 <CardMedia
                 image={userImage}
                 title="Profile image"
                 className={classes.image}/>
 
-                <CardContent 
-                className={classes.content}>
+                <CardContent className={classes.content}>
                     <Typography 
                     variant="h5" 
                     component={Link} 
@@ -123,17 +98,20 @@ class Scream extends Component {
                     </Typography>
                     <Typography variant="body1">{body}</Typography>
 
-                    {likeButton}
-                    <span>{likeCount} likes</span>
+                    <LikeButton screamId={screamId}/>
+
+                    <Typography className={classes.inline}>{likeCount} likes</Typography>
 
                     <CustomButton tip="Comments">
                         <CommentIcon />
                     </CustomButton>
-                    <span>{commentCount} comments</span>
+                    <Typography className={classes.inline}>{commentCount} comments</Typography>
 
                     { (authenticated && (userHandle === handle)) && (
                         <DeleteScream screamId={this.props.scream.screamId}/>
                     )}
+
+                    <ScreamDialog screamId={this.props.scream.screamId}/>
                     
                 </CardContent>
             </Card>
@@ -145,8 +123,6 @@ Scream.propTypes = {
     user: PropTypes.object.isRequired,
     scream: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
-    likeScream: PropTypes.func.isRequired,
-    unlikeScream: PropTypes.func.isRequired,
 }
 
 // on prend les reducers du state global dont on a besoin, ici user
@@ -155,9 +131,6 @@ const mapStateToProps = (state) => ({
 })
 
 // Passer les userActions dont on a besoin en props. Ici, uploadImage()
-const mapActionsToProps = {
-    likeScream,
-    unlikeScream,
-}
+const mapActionsToProps = {}
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Scream));

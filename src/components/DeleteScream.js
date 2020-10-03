@@ -55,7 +55,7 @@ class DeleteScream extends Component {
                 <CustomButton 
                 tip="Delete post" 
                 onClick={this.handleClickOpen}
-                className={classes.deleteButton}>
+                btnClassName={classes.deleteButton}>
                     <DeleteIcon color="secondary"/>
                 </CustomButton>
 

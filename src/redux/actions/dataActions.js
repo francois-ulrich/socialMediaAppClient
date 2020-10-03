@@ -9,7 +9,8 @@ import {
     POST_SCREAM,
     SET_ERRORS, 
     CLEAR_ERRORS, 
-    LOADING_UI
+    LOADING_UI,
+    STOP_LOADING_UI
 } from '../types';
 
 // Axios
@@ -95,5 +96,22 @@ export const postScream = (screamData) => (dispatch) => {
             type: SET_ERRORS,
             payload: err.response.data
         });
+    });
+}
+
+export const getScream = (screamId) => (dispatch) => {
+    dispatch({type: LOADING_UI});
+    
+    axios.get( `/scream/${screamId}`)
+    .then(res => {
+        dispatch({
+            type: SET_SCREAM,
+            payload: res.data
+        });
+
+        dispatch({type: STOP_LOADING_UI});
+    })
+    .catch(err => {
+        console.log(err);
     });
 }

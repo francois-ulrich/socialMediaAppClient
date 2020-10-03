@@ -21,7 +21,13 @@ export default function(state = initialState, action){
             return{
                 ...state,
                 screams: action.payload,
-                loading: false
+                loading: false,
+            }
+ 
+        case SET_SCREAM:
+            return{
+                ...state,
+                scream: action.payload,
             }
 
         case LOADING_DATA:
@@ -32,7 +38,11 @@ export default function(state = initialState, action){
         case UNLIKE_SCREAM:
         case LIKE_SCREAM:
             // Récupération de l'index du scream liké
-            let index = state.screams.findIndex((scream) =>  scream.screamId === action.payload.screamId);
+            let index = state.screams.findIndex((scream) => scream.screamId === action.payload.screamId);
+
+            if(state.scream.screamId === action.payload.screamId){
+                state.scream = action.payload;
+            }
 
             // Update du scream en question
             state.screams[index] = action.payload;

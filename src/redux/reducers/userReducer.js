@@ -39,7 +39,7 @@ export default function(state = initialState, action){
             }
 
         case LIKE_SCREAM:
-            return{
+            return {
                 ...state,
                 likes: [
                     ...state.likes,
@@ -48,19 +48,15 @@ export default function(state = initialState, action){
                         screamId: action.payload.screamId
                     }
                 ]
-            }
-
+            };
         case UNLIKE_SCREAM:
-            // On retire le like en question de la liste de like du state user
-            return{
+            return {
                 ...state,
-                likes: [
-                    state.likes.filter(
-                        (like) => like.screamId !== action.payload.screamId
-                    )
-                ]
-            }
-
+                likes: state.likes.filter(
+                    (like) => like.screamId !== action.payload.screamId
+                )
+            };
+            
         default:
             return state;
 
