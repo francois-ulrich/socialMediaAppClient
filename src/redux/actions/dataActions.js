@@ -10,7 +10,8 @@ import {
     SET_ERRORS, 
     CLEAR_ERRORS, 
     LOADING_UI,
-    STOP_LOADING_UI
+    STOP_LOADING_UI,
+    SUBMIT_COMMENT
 } from '../types';
 
 // Axios
@@ -113,5 +114,26 @@ export const getScream = (screamId) => (dispatch) => {
     })
     .catch(err => {
         console.log(err);
+    });
+}
+
+export const submitComment = (screamId, commentData) => (dispatch) => {
+    dispatch({type: LOADING_UI});
+    
+    axios.post( `/scream/${screamId}/comment`, commentData)
+    .then(res => {
+        console.log(res);
+        dispatch({
+            type: SUBMIT_COMMENT,
+            payload: res.data
+        });
+
+        dispatch({type: STOP_LOADING_UI});
+    })
+    .catch(err => {
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        });
     });
 }

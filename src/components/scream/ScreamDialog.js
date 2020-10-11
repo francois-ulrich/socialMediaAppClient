@@ -27,6 +27,7 @@ import { getScream } from '../../redux/actions/dataActions';
 
 // Custom
 import LikeButton from './LikeButton';
+import CommentForm from './CommentForm';
 import Comments from './Comments';
 
 const dayjs = require('dayjs');
@@ -130,9 +131,12 @@ class ScreamDialog extends Component {
                         <CustomButton tip="Comments">
                             <CommentIcon />
                         </CustomButton>
+                        
                         <Typography className={classes.inline}>{commentCount} comments</Typography>
                     </Grid>
                 </Grid>
+
+                <CommentForm screamId={screamId}/>
 
                 {(comments) && (<Comments comments={comments} />)}
             </Fragment>

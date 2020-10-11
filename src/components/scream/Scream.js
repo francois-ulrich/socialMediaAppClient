@@ -91,6 +91,7 @@ class Scream extends Component {
                     <Typography variant="body2" color="textSecondary">
                         {dayjs(createdAt).fromNow()}
                     </Typography>
+                    
                     <Typography variant="body1">{body}</Typography>
 
                     <LikeButton screamId={screamId}/>
@@ -107,7 +108,6 @@ class Scream extends Component {
                     )}
 
                     <ScreamDialog screamId={this.props.scream.screamId}/>
-                    
                 </CardContent>
             </Card>
         );
