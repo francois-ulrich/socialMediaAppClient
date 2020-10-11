@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CustomButton from './CustomButton';
 
 // MUI
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -10,9 +9,12 @@ import { connect } from 'react-redux';
 import { 
     likeScream,
     unlikeScream
-} from '../redux/actions/dataActions';
+} from '../../redux/actions/dataActions';
 
 import PropTypes from 'prop-types';
+
+// Custom
+import CustomButton from '../CustomButton';
 
 // React requires
 const Link = require("react-router-dom").Link;

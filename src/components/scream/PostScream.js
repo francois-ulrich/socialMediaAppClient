@@ -14,7 +14,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { 
     postScream
-} from '../redux/actions/dataActions';
+} from '../../redux/actions/dataActions';
 
 import PropTypes from 'prop-types';
 

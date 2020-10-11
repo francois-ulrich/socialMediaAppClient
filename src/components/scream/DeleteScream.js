@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // MUI stuff
 import { withStyles } from '@material-ui/core/styles';
 
-import CustomButton from './CustomButton';
+import CustomButton from '../CustomButton';
 
 // MUI Form
 import Button from '@material-ui/core/Button';
@@ -17,7 +17,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 // Redux
 import { connect } from 'react-redux';
-import { deleteScream } from '../redux/actions/dataActions';
+import { deleteScream } from '../../redux/actions/dataActions';
 
 const styles = {
     deleteButton:{

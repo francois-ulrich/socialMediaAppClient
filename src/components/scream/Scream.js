@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
-
 // MUI stuff
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -16,9 +15,8 @@ import PropTypes from 'prop-types';
 // Icones
 import CommentIcon from '@material-ui/icons/Comment';
 
-
 // Custom
-import CustomButton from './CustomButton';
+import CustomButton from '../CustomButton';
 import DeleteScream from './DeleteScream';
 import ScreamDialog from './ScreamDialog';
 import LikeButton from './LikeButton';
@@ -33,10 +31,7 @@ const styles = {
     card: {
         display: 'flex',
         marginBottom: 20,
-        position: 'relative',
-        // '&:hover': {
-        //     backgroundColor: 'red'
-        // }
+        position: 'relative'
     },
     image: {
         minWidth: 200,

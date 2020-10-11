@@ -18,10 +18,10 @@ import EditIcon from '@material-ui/icons/Edit';
 
 // Redux
 import { connect } from 'react-redux';
-import { uploadImage } from '../redux/actions/userActions';
+import { uploadImage } from '../../redux/actions/userActions';
 import PropTypes from 'prop-types';
 
-import CustomButton from './CustomButton'
+import CustomButton from '../CustomButton'
 import EditDetails from './EditDetails'
 
 // React requires

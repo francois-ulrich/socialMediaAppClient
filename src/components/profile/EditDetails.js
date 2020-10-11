@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // MUI stuff
 import { withStyles } from '@material-ui/core/styles';
 
-import CustomButton from './CustomButton';
+import CustomButton from '../CustomButton';
 import EditIcon from '@material-ui/icons/Edit';
 
 // MUI Form
@@ -17,7 +17,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 // Redux
 import { connect } from 'react-redux';
-import { editUserDetails } from '../redux/actions/userActions';
+import { editUserDetails } from '../../redux/actions/userActions';
 
 const styles = {
     editProfileDialog: { 

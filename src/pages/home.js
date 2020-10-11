@@ -5,8 +5,8 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 
 // Components
-import Scream from '../components/Scream'
-import Profile from '../components/Profile'
+import Scream from '../components/scream/Scream'
+import Profile from '../components/profile/Profile'
 
 // Redux
 import { connect } from 'react-redux';
@@ -14,7 +14,7 @@ import { loadScreams } from '../redux/actions/dataActions';
 import PropTypes from 'prop-types';
 
 // Custom
-import PostScream from "./../components/PostScream";
+import PostScream from "../components/scream/PostScream";
 
 class Home extends Component {
 

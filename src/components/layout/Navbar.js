@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 // Redux
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { logoutUser } from '../redux/actions/userActions';
+import { logoutUser } from '../../redux/actions/userActions';
 
 // MUI stuff
 import AppBar from '@material-ui/core/AppBar';
@@ -12,17 +12,14 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 // Custom components
-import CustomButton from './CustomButton'
+import CustomButton from '../CustomButton'
 
 // MUI Icons
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 import HomeIcon from '@material-ui/icons/Home';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-
-
 
 // React requires
 const Link = require("react-router-dom").Link;

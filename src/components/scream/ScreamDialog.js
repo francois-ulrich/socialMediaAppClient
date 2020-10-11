@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 
-import CustomButton from './CustomButton';
+import CustomButton from '../CustomButton';
 
 // MUI Form
 import Grid from '@material-ui/core/Grid';
@@ -23,13 +23,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Redux
 import { connect } from 'react-redux';
-import { getScream } from '../redux/actions/dataActions';
+import { getScream } from '../../redux/actions/dataActions';
 
 // Custom
 import LikeButton from './LikeButton';
+import Comments from './Comments';
 
 const dayjs = require('dayjs');
-const relativeTime = require('dayjs/plugin/relativeTime');
 
 // React requires
 const Link = require("react-router-dom").Link;
@@ -93,48 +93,49 @@ class ScreamDialog extends Component {
             UI: {
                 loading 
             },
-            user: {
-                authenticated
-            }
         } = this.props;
 
         const dialogMarkup = loading ? (
             <CircularProgress size={150} thickness={2}/>
         ) : (
-            <Grid container spacing={16}>
-                <Grid item xs={4}>
-                    <img src={userImage} alt="Profile" className={classes.image}/>
+            <Fragment>
+                <Grid container spacing={16}>
+                    <Grid item xs={4}>
+                        <img src={userImage} alt="Profile" className={classes.image}/>
+                    </Grid>
+                    <Grid item xs={8} className={classes.content}>
+                        <CustomButton onClick={this.handleClose} btnClassName={classes.closeButton}>
+                            <CloseIcon/>
+                        </CustomButton>
+
+                        <Typography 
+                        variant="h5" 
+                        component={Link} 
+                        to={`/users/${userHandle}`}
+                        color="primary"
+                        >
+                            {userHandle}
+                        </Typography>
+
+                        <Typography variant="body2" color="textSecondary">
+                            {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
+                        </Typography>
+
+                        <Typography variant="body1">{body}</Typography>
+
+                        <LikeButton screamId={screamId}/>
+
+                        <Typography className={classes.inline}>{likeCount} likes</Typography>
+
+                        <CustomButton tip="Comments">
+                            <CommentIcon />
+                        </CustomButton>
+                        <Typography className={classes.inline}>{commentCount} comments</Typography>
+                    </Grid>
                 </Grid>
-                <Grid item xs={8} className={classes.content}>
-                    <CustomButton onClick={this.handleClose} btnClassName={classes.closeButton}>
-                        <CloseIcon/>
-                    </CustomButton>
 
-                    <Typography 
-                    variant="h5" 
-                    component={Link} 
-                    to={`/users/${userHandle}`}
-                    color="primary"
-                    >
-                        {userHandle}
-                    </Typography>
-
-                    <Typography variant="body2" color="textSecondary">
-                        {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
-                    </Typography>
-
-                    <Typography variant="body1">{body}</Typography>
-
-                    <LikeButton screamId={screamId}/>
-
-                    <Typography className={classes.inline}>{likeCount} likes</Typography>
-
-                    <CustomButton tip="Comments">
-                        <CommentIcon />
-                    </CustomButton>
-                    <Typography className={classes.inline}>{commentCount} comments</Typography>
-                </Grid>
-            </Grid>
+                {(comments) && (<Comments comments={comments} />)}
+            </Fragment>
         );
  
         return (
