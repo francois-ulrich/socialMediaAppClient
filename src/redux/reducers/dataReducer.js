@@ -17,6 +17,8 @@ const initialState = {
 }
 
 export default function(state = initialState, action){
+    let index;
+
     switch(action.type){
         case SET_SCREAMS:
             return{
@@ -39,7 +41,7 @@ export default function(state = initialState, action){
         case UNLIKE_SCREAM:
         case LIKE_SCREAM:
             // Récupération de l'index du scream liké
-            let index = state.screams.findIndex((scream) => scream.screamId === action.payload.screamId);
+            index = state.screams.findIndex((scream) => scream.screamId === action.payload.screamId);
 
             if(state.scream.screamId === action.payload.screamId){
                 state.scream = action.payload;
@@ -73,13 +75,29 @@ export default function(state = initialState, action){
             }
 
         case SUBMIT_COMMENT:
-            return{
+            // Récupération de l'index du scream liké
+            index = state.screams.findIndex((scream) => scream.screamId === action.payload.screamId);
+
+            // console.log(state);
+            // console.log(index);
+            // console.log(state.screams[index]);
+
+            console.log("state.screams[index].commentCount++");
+            state.screams[index].commentCount++;
+
+            console.log(state.screams[index].commentCount);
+
+            // console.log(state.screams[index]);
+
+            // state.screams[index].commentCount++;
+
+            return {
                 ...state,
-                screams: [
-                    action.payload,
-                    ...state.screams
-                ]
-            }
+                scream: {
+                    ...state.scream, 
+                    comments: [action.payload, ...state.scream.comments]
+                }
+            };
 
         default:
             return state;

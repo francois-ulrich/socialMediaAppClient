@@ -93,7 +93,7 @@ class Scream extends Component {
                     </Typography>
                     
                     <Typography variant="body1">{body}</Typography>
-
+-
                     <LikeButton screamId={screamId}/>
 
                     <Typography className={classes.inline}>{likeCount} likes</Typography>

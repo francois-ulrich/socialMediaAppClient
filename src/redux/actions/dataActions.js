@@ -117,23 +117,49 @@ export const getScream = (screamId) => (dispatch) => {
     });
 }
 
-export const submitComment = (screamId, commentData) => (dispatch) => {
-    dispatch({type: LOADING_UI});
+// export const submitComment = (screamId, commentData) => (dispatch) => {
+//     dispatch({type: LOADING_UI});
     
-    axios.post( `/scream/${screamId}/comment`, commentData)
-    .then(res => {
-        console.log(res);
+//     axios.post( `/scream/${screamId}/comment`, commentData)
+//     .then(res => {
+//         console.log(res);
+//         dispatch({
+//             type: SUBMIT_COMMENT,
+//             payload: res.data
+//         });
+
+//         dispatch({type: STOP_LOADING_UI});
+//     })
+//     .catch(err => {
+//         dispatch({
+//             type: SET_ERRORS,
+//             payload: err.response.data
+//         });
+//     });
+// }
+
+export const submitComment = (screamId, commentData) => (dispatch) => {
+    axios
+      .post(`/scream/${screamId}/comment`, commentData)
+      .then((res) => {
+        console.log("res.data");
+        console.log(res.data);
+
         dispatch({
-            type: SUBMIT_COMMENT,
-            payload: res.data
+          type: SUBMIT_COMMENT,
+          payload: res.data
         });
 
-        dispatch({type: STOP_LOADING_UI});
-    })
-    .catch(err => {
+        dispatch(clearErrors());
+      })
+      .catch((err) => {
         dispatch({
-            type: SET_ERRORS,
-            payload: err.response.data
+          type: SET_ERRORS,
+          payload: err.response.data
         });
-    });
-}
+      });
+  };
+
+  export const clearErrors = () => (dispatch) => {
+    dispatch({ type: CLEAR_ERRORS });
+  };
