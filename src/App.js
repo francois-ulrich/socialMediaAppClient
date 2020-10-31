@@ -14,6 +14,7 @@ import AuthRoute from './util/AuthRoute';
 import Home from './pages/Home';
 import login from './pages/login';
 import signup from './pages/signup';
+import user from './pages/user';
 
 // Theme
 import themeObject from './util/theme';
@@ -74,6 +75,7 @@ class App extends Component {
                   <Route exact path="/" component={Home} />
                   <AuthRoute exact path="/login" component={login}/>
                   <AuthRoute exact path="/signup" component={signup}/>
+                  <Route exact path="/users/:handle" component={user} />
                 </Switch>
               </div>
             </Router>
