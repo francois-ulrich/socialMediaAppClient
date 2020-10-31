@@ -52,7 +52,8 @@ class Scream extends Component {
 
         // Destructuring, même chose que: 
         const { 
-            classes,  
+            classes,
+            openDialog,
             scream : {
                 body, 
                 createdAt, 
@@ -107,7 +108,10 @@ class Scream extends Component {
                         <DeleteScream screamId={this.props.scream.screamId}/>
                     )}
 
-                    <ScreamDialog screamId={this.props.scream.screamId}/>
+                    <ScreamDialog 
+                    screamId={this.props.scream.screamId} 
+                    userHandle={userHandle} 
+                    openDialog={openDialog}/>
                 </CardContent>
             </Card>
         );
@@ -118,6 +122,7 @@ Scream.propTypes = {
     user: PropTypes.object.isRequired,
     scream: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
+    openDialog: PropTypes.bool
 }
 
 // on prend les reducers du state global dont on a besoin, ici user

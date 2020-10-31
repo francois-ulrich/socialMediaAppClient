@@ -52,26 +52,38 @@ const styles = {
     }
 }
 class ScreamDialog extends Component {
-    constructor(){
-        super();
-        
-        this.state = {
-            open: false,
-        }
+    state = {
+        open: false,
+        oldPath: '',
+        newPath: ''
     }
 
     componentDidMount = () => {
-
+        if(this.props.openDialog){
+            this.setState({
+                open: true
+            })
+        }
     }
 
     handleOpen = () => {
-        this.setState({open: true});
+        let oldPath = window.location.pathname;
+
+        const newPath = `/users/${this.props.userHandle}/scream/${this.props.screamId}`;
+        window.history.pushState(null, null, newPath);
+
+        this.setState({
+            open: true,
+            oldPath,
+            newPath
+        });
 
         this.props.getScream(this.props.screamId);
     };
 
     handleClose = () => {
         this.setState({open: false});
+        window.history.pushState(null, null, this.state.oldPath);
     };
 
     isScreamLikedByUser = () => {
@@ -166,15 +178,13 @@ class ScreamDialog extends Component {
 
 ScreamDialog.propTypes = {
     classes: PropTypes.object.isRequired,
-
     screamId: PropTypes.string.isRequired,
     userHandle: PropTypes.string.isRequired,
-
     getScream: PropTypes.func.isRequired,
-
     scream: PropTypes.object.isRequired,
     UI: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    openDialog: PropTypes.bool
 }
 
 // Passer les userActions dont on a besoin en props.

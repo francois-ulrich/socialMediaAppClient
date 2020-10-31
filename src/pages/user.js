@@ -21,11 +21,17 @@ import axios from 'axios';
 class user extends Component {
     state = {
         profile: null,
+        screamIdParam: null,
     }
 
     componentDidMount(){
         // Get handle
         const handle = this.props.match.params.handle;
+        const screamId = this.props.match.params.screamId;
+
+        if(screamId){
+            this.setState({ screamIdParam: screamId })
+        }
 
         this.props.getUserData(handle);
 
@@ -42,9 +48,29 @@ class user extends Component {
     }
 
     render() {
-        const {screams, loading } = this.props.data;
+        const  {screams, loading } = this.props.data;
+        const { screamIdParam } = this.state;
 
-        const screamsLoadedMarkup = screams.map( (scream) => <Scream scream={scream} key={scream.screamId} />);
+        console.log("screamIdParam");
+        console.log(screamIdParam);
+
+        const screamsLoadedMarkup = 
+        screams === null ? 
+        <p>This user hasn't posted anything... yet!</p> 
+        :
+        (
+            !screamIdParam ?
+            screams.map( scream => <Scream scream={scream} key={scream.screamId} />)
+            :
+            screams.map( (scream) => {
+                if(scream.screamId !== screamIdParam){
+                    return <Scream scream={scream} key={scream.screamId}/>;
+                }else{
+                    return <Scream scream={scream} key={scream.screamId} openDialog />;
+                }
+                
+            })
+        );
 
         const screamsLoadingMarkup = (
             <p>Loading...</p>
