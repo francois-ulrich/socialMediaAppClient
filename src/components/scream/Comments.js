@@ -29,10 +29,8 @@ export class Comments extends Component {
         } = this.props;
 
         const commentsMarkup = this.props.comments.map((comment, key) => 
-            <Fragment>
-                
-
-                <Grid container spacing={2} key={key}>
+            <div key={key}>
+                <Grid container spacing={2} >
                     <Divider className={classes.divider}/>
                     <Grid item>
                         <Avatar 
@@ -57,7 +55,7 @@ export class Comments extends Component {
                         <Typography variant="body1">{comment.body}</Typography>
                     </Grid>
                 </Grid>
-            </Fragment>
+            </div>
         );
 
         return (

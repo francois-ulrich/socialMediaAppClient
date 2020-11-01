@@ -22,6 +22,12 @@ import PropTypes from 'prop-types';
 const styles = {
     divider: {
         margin: '20px 0',
+    },
+    container: {
+        marginBottom: '20px',
+    },
+    form: {
+        marginBottom: '20px',
     }
 }
 
@@ -83,10 +89,11 @@ export class CommentForm extends Component {
         } = this.props;
 
         return (
-            <Fragment>
+            <div className={classes.container}>
                 <Divider className={classes.divider}/>
                 <form noValidate onSubmit={this.handleSubmit}>
                     <FormControl 
+                    className={classes.form}
                     fullWidth>
                         <TextField
                         id="body"
@@ -114,7 +121,8 @@ export class CommentForm extends Component {
                         </Button>
                     )}
                 </form>
-            </Fragment>
+                <Divider className={classes.divider}/>
+            </div>
         )
     }
 }

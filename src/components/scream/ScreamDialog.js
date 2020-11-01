@@ -60,9 +60,11 @@ class ScreamDialog extends Component {
 
     componentDidMount = () => {
         if(this.props.openDialog){
-            this.setState({
-                open: true
-            })
+            // this.setState({
+            //     open: true
+            // })
+
+            this.handleOpen();
         }
     }
 
@@ -77,6 +79,8 @@ class ScreamDialog extends Component {
             oldPath,
             newPath
         });
+
+        // console.log(this.props.screamId);
 
         this.props.getScream(this.props.screamId);
     };
@@ -171,7 +175,6 @@ class ScreamDialog extends Component {
                     </DialogContent>
                 </Dialog>
             </Fragment>
-
         );
     }
 }

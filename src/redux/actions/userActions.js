@@ -6,6 +6,7 @@ import {
     CLEAR_ERRORS,
     LOADING_UI,
     LOADING_USER,
+    MARK_NOTIFICATIONS_READ,
 } from '../types';
 
 // Axios
@@ -136,6 +137,20 @@ export const editUserDetails = (newUserData) => (dispatch) => {
 
         dispatch({
             type: CLEAR_ERRORS,
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
+
+export const markNotificationsRead = (notifications) => (dispatch) => {
+    axios
+    .post("/notifications", notifications)
+    .then(res => {
+        // Créer une action CLEAR_NOTIFICATIONS ?
+        dispatch({
+            type: MARK_NOTIFICATIONS_READ,
         });
     })
     .catch(err => {

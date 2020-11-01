@@ -9,7 +9,6 @@ import { Typography } from '@material-ui/core';
 
 // Redux
 import { connect } from 'react-redux';
-
 import PropTypes from 'prop-types';
 
 // Icones

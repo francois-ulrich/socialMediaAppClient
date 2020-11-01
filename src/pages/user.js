@@ -38,8 +38,6 @@ class user extends Component {
         // Set user data in state
         axios.get(`/user/${handle}`)
         .then( res => {
-            console.log(res);
-
             this.setState({
                 profile: res.data.credentials
             })
@@ -50,9 +48,6 @@ class user extends Component {
     render() {
         const  {screams, loading } = this.props.data;
         const { screamIdParam } = this.state;
-
-        console.log("screamIdParam");
-        console.log(screamIdParam);
 
         const screamsLoadedMarkup = 
         screams === null ? 

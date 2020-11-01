@@ -13,13 +13,14 @@ import Typography from '@material-ui/core/Typography';
 
 // Custom components
 import CustomButton from '../CustomButton'
+import Notifications from './Notifications'
 
 // MUI Icons
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+
 
 // React requires
 const Link = require("react-router-dom").Link;
@@ -39,9 +40,7 @@ class Navbar extends Component {
                     <HomeIcon />
                 </CustomButton>
 
-                <CustomButton tip="Notifications">
-                    <NotificationsIcon/>
-                </CustomButton>
+                <Notifications />
 
                 <CustomButton
                     tip="Logout"
