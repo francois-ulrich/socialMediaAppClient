@@ -24,7 +24,6 @@ const Link = require("react-router-dom").Link;
 
 // DayJS
 const dayjs = require('dayjs');
-const relativeTime = require('dayjs/plugin/relativeTime');
 
 export class Notifications extends Component {
     state = {

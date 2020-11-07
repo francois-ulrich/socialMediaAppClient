@@ -39,6 +39,46 @@ export default {
       height: "30px",
       display: "block",
       margin: "10px auto 0",
-    }
-  }
+    },
+    
+    profile: {
+      padding: '20px',
+      textAlign: 'center',
+  
+      '& .image-wrapper': {
+          textAlign: 'center',
+          position: 'relative',
+          '& button': {
+          position: 'absolute',
+          top: '80%',
+          left: '70%'
+          }
+      },
+      '& .profile-image': {
+          width: 200,
+          height: 200,
+          objectFit: 'cover',
+          maxWidth: '100%',
+          borderRadius: '50%'
+      },
+      '& .profile-details': {
+          textAlign: 'center',
+          '& span, svg': {
+          verticalAlign: 'middle'
+          },
+          '& a': {
+          color: '#00bcd4'
+          }
+      },
+      '& hr': {
+          border: 'none',
+          margin: '0 0 10px 0'
+      },
+      '& svg.button': {
+          '&:hover': {
+          cursor: 'pointer'
+          }
+      }
+    },
+  },
 };

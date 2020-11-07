@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 
 // Custom
 import PostScream from "../components/scream/PostScream";
+import ScreamSkeleton from '../util/ScreamSkeleton';
 
 class Home extends Component {
 
@@ -33,7 +34,7 @@ class Home extends Component {
         const screamsLoadedMarkup = screams.map( (scream, index) => <Scream scream={scream} key={scream.screamId} />);
 
         const screamsLoadingMarkup = (
-            <p>Loading...</p>
+            <ScreamSkeleton />
         );
 
         const screamsMarkup = loading ? screamsLoadingMarkup : screamsLoadedMarkup;
