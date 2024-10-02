@@ -1,5 +1,5 @@
 {
-  "name": "socialape-client",
+  "name": "social-media-app-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,18 +8,19 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.19.2",
+    "axios": "^1.7.7",
     "dayjs": "^1.8.30",
     "jwt-decode": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^5.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "ng": "set NODE_OPTIONS=--openssl-legacy-provider && ng",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

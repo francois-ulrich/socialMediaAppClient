@@ -47,21 +47,21 @@ class Navbar extends Component {
                     onClick={this.handleLogout}
                     btnClassName="button"
                 >
-                    <ExitToAppIcon/>
+                    <ExitToAppIcon />
                 </CustomButton>
             </Fragment>
         );
-        
+
         const unAuthenticatedButtons = (
             <Fragment>
                 <Link to="/login" variant="contained" color="primary">
                     <CustomButton color="inherit" tip="Login">
-                        <AccountCircleIcon/>
+                        <AccountCircleIcon />
                     </CustomButton>
                 </Link>
                 <Link to="/signup" variant="contained" color="secondary">
                     <CustomButton color="inherit" tip="Signup">
-                        <PersonAddIcon/>
+                        <PersonAddIcon />
                     </CustomButton>
                 </Link>
             </Fragment>
@@ -72,10 +72,10 @@ class Navbar extends Component {
                 <Toolbar className="nav-container">
                     <Button color="inherit" component={Link} to="/">
                         <Typography variant="h6" noWrap>
-                            The Social Francis
+                            Social media app
                         </Typography>
                     </Button>
-                    { authenticated ? authenticatedButtons : unAuthenticatedButtons }
+                    {authenticated ? authenticatedButtons : unAuthenticatedButtons}
                 </Toolbar>
             </AppBar>
         );
@@ -84,7 +84,7 @@ class Navbar extends Component {
 
 
 Navbar.propTypes = {
-    authenticated : PropTypes.bool.isRequired
+    authenticated: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = (state) => ({
