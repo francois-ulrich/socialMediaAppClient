@@ -48,7 +48,6 @@ class Scream extends Component {
     render() {
         dayjs.extend(relativeTime);
 
-        // Destructuring, même chose que: 
         const { 
             classes,
             openDialog,
@@ -123,12 +122,10 @@ Scream.propTypes = {
     openDialog: PropTypes.bool
 }
 
-// on prend les reducers du state global dont on a besoin, ici user
 const mapStateToProps = (state) => ({
     user: state.user
 })
 
-// Passer les userActions dont on a besoin en props. Ici, uploadImage()
 const mapActionsToProps = {}
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Scream));

@@ -12,11 +12,9 @@ import {
 // Axios
 import axios from 'axios'; 
 
-// Fonction Helper mettant en place le header des requêtes
 const setAuthorizationHeader = (token) => {
     const FBIdToken = `Bearer ${token}`;
 
-    // Mise en place du Axios authorization request header 
     axios.defaults.headers.common['Authorization'] = FBIdToken;
 
     localStorage.setItem('FBIdToken', FBIdToken);
@@ -49,15 +47,11 @@ export const loginUser = (userData, history) => (dispatch) => {
     });
 }
 
-// Action de récupération des données de l'utilisateur
 export const logoutUser = () => (dispatch) => {
-    // Oublie le token passé en storage
     localStorage.removeItem('FBIdToken');
 
-    // Suppression du Axios authorization request header 
     delete axios.defaults.headers.common['Authorization'];
 
-    // Dispatch de l'action de déconnexion
     dispatch({
         type: SET_UNAUTHENTICATED,
     });
@@ -124,7 +118,7 @@ export const uploadImage = (formData) => (dispatch) => {
     });
 }
 
-// Update des infos utilisateir
+// Update des infos utilisateur
 export const editUserDetails = (newUserData) => (dispatch) => {
     dispatch({
         type: LOADING_USER
@@ -148,7 +142,6 @@ export const markNotificationsRead = (notifications) => (dispatch) => {
     axios
     .post("/notifications", notifications)
     .then(res => {
-        // Créer une action CLEAR_NOTIFICATIONS ?
         dispatch({
             type: MARK_NOTIFICATIONS_READ,
         });

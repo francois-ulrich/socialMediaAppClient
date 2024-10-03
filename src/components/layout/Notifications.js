@@ -130,12 +130,10 @@ Notifications.propTypes = {
     notifications: PropTypes.func.isRequired,
 };
 
-// on prend les reducers du state global dont on a besoin, ici user
 const mapStateToProps = state => ({
     notifications: state.user.notifications
 })
 
-// Passer les userActions dont on a besoin en props. Ici, uploadImage()
 const mapActionsToProps = {
     markNotificationsRead
 }

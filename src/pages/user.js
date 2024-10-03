@@ -98,12 +98,10 @@ user.propTypes = {
     getUserData: PropTypes.func.isRequired,
 }
 
-// on prend les reducers du state global dont on a besoin, ici user
 const mapStateToProps = (state) => ({
     data: state.data
 })
 
-// Passer les userActions dont on a besoin en props. Ici, uploadImage()
 const mapActionsToProps = {
     getUserData
 }

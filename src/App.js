@@ -41,6 +41,8 @@ import {
 
 const theme = createTheme(themeObject);
 
+axios.defaults.baseURL = "https://europe-west1-socialmediaapp-de7d3.cloudfunctions.net/api";
+
 const token = localStorage.FBIdToken;
 
 if (token) {

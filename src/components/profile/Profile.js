@@ -32,15 +32,15 @@ const Link = require("react-router-dom").Link;
 
 const styles = (theme) => ({
     ...theme.spreadThis,
-    button:{
+    button: {
         margin: '10px'
     },
 })
 
 class Profile extends Component {
-    constructor(){
+    constructor() {
         super();
-        
+
         this.inputFileRef = React.createRef();
     }
 
@@ -60,10 +60,10 @@ class Profile extends Component {
     }
 
     render() {
-        const { 
+        const {
             classes,
-            user:{
-                credentials:{
+            user: {
+                credentials: {
                     handle,
                     createdAt,
                     imageUrl,
@@ -93,7 +93,7 @@ class Profile extends Component {
             <Paper className={classes.paper}>
                 <div className={classes.profile}>
                     <div className="image-wrapper">
-                        <img src={imageUrl} alt="profile" className="profile-image"/>
+                        <img src={imageUrl} alt="profile" className="profile-image" />
 
                         <input
                             ref={this.inputFileRef}
@@ -112,51 +112,51 @@ class Profile extends Component {
                         </CustomButton>
                     </div>
 
-                    <hr/>
+                    <hr />
 
                     <div className="profile-details">
-                        
-                        <MuiLink 
-                        component={Link}
-                        to={`/users/${handle}`}
-                        color="primary"
-                        variant="h5">
+
+                        <MuiLink
+                            component={Link}
+                            to={`/users/${handle}`}
+                            color="primary"
+                            variant="h5">
                             @{handle}
                         </MuiLink>
 
-                        <hr/>
+                        <hr />
 
                         {bio && <Typography
                             variant="body2"
                         >{bio}</Typography>}
 
-                        <hr/>
+                        <hr />
 
                         {location && (
                             <Fragment>
-                                <LocationOntIcon color="primary"/>
+                                <LocationOntIcon color="primary" />
                                 {' '}
                                 <span>{location}</span>
                             </Fragment>
                         )}
 
-                        <hr/>
+                        <hr />
 
                         {website && (
                             <Fragment>
-                                <InsertLinktIcon color="primary"/>
+                                <InsertLinktIcon color="primary" />
                                 {' '}
                                 <a href={website} target="_blank" rel="noopener noreferrer">{website}</a>
                             </Fragment>
                         )}
 
-                        <hr/>
+                        <hr />
 
                         {createdAt && (
                             <Fragment>
-                                <CalendarTodaytIcon color="primary"/>
+                                <CalendarTodaytIcon color="primary" />
                                 {' '}
-                                <span>Joined { dayjs(createdAt).format("MM/YYYY") }</span>
+                                <span>Joined {dayjs(createdAt).format("MM/YYYY")}</span>
                             </Fragment>
                         )}
                     </div>
@@ -168,12 +168,10 @@ class Profile extends Component {
             </Paper>
         );
 
-        return loading ? <ProfileSkeleton/> : (authenticated ? authenticatedContent : unauthenticatedContent);
-        // return loading ? <p>Loadinge</p> : (authenticated ? authenticatedContent : unauthenticatedContent);
+        return loading ? <ProfileSkeleton /> : (authenticated ? authenticatedContent : unauthenticatedContent);
     }
 }
 
-// on prend les reducers du state global dont on a besoin, ici user
 const mapStateToProps = (state) => ({
     user: state.user
 })
@@ -184,7 +182,6 @@ Profile.propTypes = {
     uploadImage: PropTypes.func.isRequired,
 }
 
-// Passer les userActions dont on a besoin en props. Ici, uploadImage()
 const mapActionsToProps = {
     uploadImage
 }

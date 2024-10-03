@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 // Redux stuff
 import {connect} from 'react-redux';
 
-// Syntaxe en => () retourne immédiatement un rendu
 const AuthRoute = ({component: Component, authenticated, ...rest}) => (
     <Route 
         {...rest}
@@ -18,12 +17,10 @@ const AuthRoute = ({component: Component, authenticated, ...rest}) => (
     />
 )
 
-// Mise de authenticated en props de AuthRoute
 const mapStateToProps = (state) => ({
     authenticated: state.user.authenticated,
 })
 
-// Définition des types des props requis par le composant
 AuthRoute.propTypes = {
     user: PropTypes.object,
 }

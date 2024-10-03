@@ -190,7 +190,6 @@ ScreamDialog.propTypes = {
     openDialog: PropTypes.bool
 }
 
-// Passer les userActions dont on a besoin en props.
 const mapActionsToProps = {
     getScream,
 }

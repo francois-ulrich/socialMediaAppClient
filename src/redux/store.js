@@ -13,11 +13,8 @@ import dataReducer from './reducers/dataReducer';
 
 const initialState = {};
 
-// "Middleware extends the store's abilities, and lets you write async logic that interacts with the store."
 const middleware = [thunk];
 
-// Actions: Font les opérations avec l'API
-// Reducers: Permettent d'intéragir avec le store
 const reducers = combineReducers({
     user: userReducer,
     data: dataReducer,

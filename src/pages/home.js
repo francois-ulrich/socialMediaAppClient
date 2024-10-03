@@ -19,7 +19,7 @@ import ScreamSkeleton from '../util/ScreamSkeleton';
 
 class Home extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.loadScreams();
     }
 
@@ -31,7 +31,10 @@ class Home extends Component {
             }
         } = this.props;
 
-        const screamsLoadedMarkup = screams.map( (scream, index) => <Scream scream={scream} key={scream.screamId} />);
+        console.log("screams:");
+        console.log(screams);
+
+        const screamsLoadedMarkup = screams.map((scream) => <Scream scream={scream} key={scream.screamId} />);
 
         const screamsLoadingMarkup = (
             <ScreamSkeleton />
@@ -42,12 +45,12 @@ class Home extends Component {
         return (
             <Grid container spacing={10}>
                 <Grid item sm={8} xs={12}>
-                    <PostScream/>
+                    <PostScream />
 
                     {screamsMarkup}
                 </Grid>
                 <Grid item sm={4} xs={12}>
-                    <Profile/>
+                    <Profile />
                 </Grid>
             </Grid>
         )
@@ -59,12 +62,10 @@ Home.propTypes = {
     loadScreams: PropTypes.func.isRequired,
 }
 
-// on prend les reducers du state global dont on a besoin, ici user
 const mapStateToProps = (state) => ({
     data: state.data
 })
 
-// Passer les userActions dont on a besoin en props. Ici, uploadImage()
 const mapActionsToProps = {
     loadScreams
 }

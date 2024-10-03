@@ -142,7 +142,6 @@ class StaticProfile extends Component {
     }
 }
 
-// on prend les reducers du state global dont on a besoin, ici user
 const mapStateToProps = (state) => ({
     user: state.user
 })
@@ -154,7 +153,6 @@ StaticProfile.propTypes = {
     uploadImage: PropTypes.func.isRequired,
 }
 
-// Passer les userActions dont on a besoin en props. Ici, uploadImage()
 const mapActionsToProps = {
     uploadImage
 }

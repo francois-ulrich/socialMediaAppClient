@@ -9,7 +9,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-// Nécesaire pour définir les types des props attendus
 import PropTypes from 'prop-types';
 
 // Redux stuff
@@ -120,7 +119,6 @@ export class login extends Component {
     }
 }
 
-// Définition des types des props requis par le composant
 login.propTypes = {
     classes: PropTypes.object.isRequired,
     loginUser: PropTypes.func.isRequired,
@@ -128,13 +126,11 @@ login.propTypes = {
     UI: PropTypes.object.isRequired,
 }
 
-// on prend les reducers du state global dont on a besoin, ici user et UI.
 const mapStateToProps = (state) => ({
     user: state.user,
     UI: state.UI
 })
 
-// Passer les userActions dont on a besoin en props. Ici, loginUser()
 const mapActionsToProps = {
     loginUser
 }
